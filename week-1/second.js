@@ -37,9 +37,26 @@
  */
 var isValid = function (s) {
   console.log("input", s);
+  let brackets = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == "{") {
+      brackets.push("}");
+    } else if (s[i] == "[") {
+      brackets.push("]");
+    } else if (s[i] == "(") {
+      brackets.push(")");
+    } else if (brackets.pop() !== s[i]) {
+      return false;
+    }
+  }
+  return !brackets.length;
 };
 
 const example1 = isValid("()");
 const example2 = isValid("()[]{}");
 const example3 = isValid("(]");
 const example4 = isValid("([])");
+console.log("Example1", example1);
+console.log("Example2", example2);
+console.log("Example3", example3);
+console.log("Example4", example4);
